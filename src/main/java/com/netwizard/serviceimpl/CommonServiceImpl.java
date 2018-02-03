@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.netwizard.dao.CommonDAO;
-import com.netwizard.dao.UserDAO;
+import com.netwizard.model.AssignGroup;
 import com.netwizard.model.Users;
 import com.netwizard.service.CommonService;
 
@@ -17,9 +17,9 @@ import com.netwizard.service.CommonService;
  */
 @Service
 public class CommonServiceImpl implements CommonService {
-	
-private static Logger logger = Logger.getLogger(UserServiceImpl.class);
-	
+
+	private static Logger logger = Logger.getLogger(UserServiceImpl.class);
+
 	@Autowired
 	private CommonDAO commonDAO;
 
@@ -28,13 +28,26 @@ private static Logger logger = Logger.getLogger(UserServiceImpl.class);
 		List<Users> users = null;
 		try {
 			users = commonDAO.getAllUsers();
-		} catch (Exception e) { /* for any other errors */
+		} catch (Exception e) {
 			logger.error("getAllUsers");
 			e.printStackTrace();
 		}
-		logger.debug("<< getAllUsers="+users);
+		logger.debug("<< getAllUsers=" + users);
 		return users;
 	}
-	
+
+	public List<AssignGroup> getAllGroups() {
+		logger.debug(">> getAllGroups");
+		List<AssignGroup> groupList = null;
+		try {
+			groupList = commonDAO.getAllGroups();
+		} catch (Exception e) {
+			logger.error("getAllGroups");
+			e.printStackTrace();
+		}
+		logger.debug("<< getAllGroups=" + groupList);
+		return groupList;
+
+	}
 
 }

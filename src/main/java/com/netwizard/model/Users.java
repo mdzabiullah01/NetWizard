@@ -15,13 +15,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
  */
 @Document(collection = "users")
 public class Users implements Serializable {
-	
+
 	/**
 	 *
 	 */
 	private static final long serialVersionUID = 1L;
 
-	 
 	private String _id;
 	private String firstName;
 	private String lastName;
@@ -41,13 +40,16 @@ public class Users implements Serializable {
 	private String nationality;
 	private Date dateofbirth;
 	private Date dateOfJoinging;
-	 
+	private String assignGroup;
+
 	public String get_id() {
 		return _id;
 	}
+
 	public void set_id(String _id) {
 		this._id = _id;
 	}
+
 	public String getDefaultPassword() {
 		return defaultPassword;
 	}
@@ -55,15 +57,19 @@ public class Users implements Serializable {
 	public String getFirstName() {
 		return firstName;
 	}
+
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+
 	public String getLastName() {
 		return lastName;
 	}
+
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
+
 	public void setDefaultPassword(String defaultPassword) {
 		this.defaultPassword = defaultPassword;
 	}
@@ -76,14 +82,14 @@ public class Users implements Serializable {
 		this.wrong_pwd_tries = wrong_pwd_tries;
 	}
 
-	
 	public Date getLastAccessed() {
 		return lastAccessed;
 	}
+
 	public void setLastAccessed(Date lastAccessed) {
 		this.lastAccessed = lastAccessed;
 	}
-	
+
 	/**
 	 * @return the password
 	 */
@@ -137,53 +143,77 @@ public class Users implements Serializable {
 	public void setOldPasswordList(final List<String> oldPasswordList) {
 		this.oldPasswordList = oldPasswordList;
 	}
+
 	public String getProfilepic() {
 		return profilepic;
 	}
+
 	public void setProfilepic(String profilepic) {
 		this.profilepic = profilepic;
 	}
+
 	public Date getPassword_forget_time() {
 		return password_forget_time;
 	}
+
 	public void setPassword_forget_time(Date password_forget_time) {
 		this.password_forget_time = password_forget_time;
 	}
+
 	public Date getCreatedDate() {
 		return createdDate;
 	}
+
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
+
 	public String getDepartment() {
 		return department;
 	}
+
 	public void setDepartment(String department) {
 		this.department = department;
 	}
+
 	public String getCountry() {
 		return country;
 	}
+
 	public void setCountry(String country) {
 		this.country = country;
 	}
+
 	public String getNationality() {
 		return nationality;
 	}
+
 	public void setNationality(String nationality) {
 		this.nationality = nationality;
 	}
+
 	public Date getDateofbirth() {
 		return dateofbirth;
 	}
+
 	public void setDateofbirth(Date dateofbirth) {
 		this.dateofbirth = dateofbirth;
 	}
+
 	public Date getDateOfJoinging() {
 		return dateOfJoinging;
 	}
+
 	public void setDateOfJoinging(Date dateOfJoinging) {
 		this.dateOfJoinging = dateOfJoinging;
+	}
+
+	public String getAssignGroup() {
+		return assignGroup;
+	}
+
+	public void setAssignGroup(String assignGroup) {
+		this.assignGroup = assignGroup;
 	}
 
 }

@@ -53,7 +53,7 @@ public class ReportController {
 		User appUser = null;
 		Users users = null;
 		try{
-			if(!"anonymousUser".equals(principal)){
+			if(!RequestConstans.Anonymous.ANONYMOUS_USER.equals(principal)){
 				appUser = (User)principal;
 				modelAndView =new ModelAndView(RequestConstans.PAGE.REPORTS);
 				users = userService.loadUserByUserEmail(appUser.getUsername());

@@ -7,37 +7,34 @@ public class AppConstants {
 	public static final int SESSION_INVALID_CODE = 2;
 	public static final String USER = "USER";
 	public static final String PAID_CAREGIVER = "PAID_CAREGIVER";
-	public static final String MEMBER ="MEMBER";
+	public static final String MEMBER = "MEMBER";
 	public static final String REPORT = "Report";
 	public static final Object CASEMANAGER = "CASEMANAGER";
 	public static final Object ACCEPT_PAID_CAREGIVER = "ACCEPT_PAID_CAREGIVER";
-	
+
 	public static final String EMAIL_FROM = "contact@careheroes.co";
 
-
-	public static final String JSON ="application/json";
+	public static final String JSON = "application/json";
 	public static final String SPACE = " ";
 	public static final String MONGO_TEMPLATE = "mongoTemplate";
 	public static final String USER_NOT_LOGIN = "NOT_LOGIN";
-	
-	
-	public static final String ADDCAREGIVER="ACCOUNT_CREATION";
-	public static final String FORGETPASSWORD="FORGET_PASSWORD";
-	
-	public static final String CHANGE_PASSWORD="CHANGE_PASSWORD";
-	public static final String RESETPASSWORD="RESET_PASSWORD";
-	
-	public static final String ACCOUNTLOCKED="ACCOUNT_LOCKED";
-		
-	public static final String NEWNOTIFICATION="NEW_NOTIFICATION";
-	
-	public static final String NEW_MEMBER_ASSIGNMENTS="NEW_MEMBER_ASSIGNMENTS";
-	
-	public static final String NEW_MEMBER_ASSIGNMENTS_REMINDER2="NEW_MEMBER_ASSIGNMENTS_REMINDER2";
-	public static final String NEW_MEMBER_ASSIGNMENTS_REMINDER1="NEW_MEMBER_ASSIGNMENTS_REMINDER1";
-	public static final String NEW_MEMBER_ASSIGNMENTS_FINAL_REMINDER="NEW_MEMBER_ASSIGNMENTS_FINAL_REMINDER";
-	public static final String AUTO = "AUTO_GENERATED";
-	
+
+	public static final String ADDCAREGIVER = "ACCOUNT_CREATION";
+	public static final String FORGETPASSWORD = "FORGET_PASSWORD";
+
+	public static final String CHANGE_PASSWORD = "CHANGE_PASSWORD";
+	public static final String RESETPASSWORD = "RESET_PASSWORD";
+
+	public static final String ACCOUNTLOCKED = "ACCOUNT_LOCKED";
+
+	public static final String NEWNOTIFICATION = "NEW_NOTIFICATION";
+
+	public static final String NEW_MEMBER_ASSIGNMENTS = "NEW_MEMBER_ASSIGNMENTS";
+
+	public static final String NEW_MEMBER_ASSIGNMENTS_REMINDER2 = "NEW_MEMBER_ASSIGNMENTS_REMINDER2";
+	public static final String NEW_MEMBER_ASSIGNMENTS_REMINDER1 = "NEW_MEMBER_ASSIGNMENTS_REMINDER1";
+	public static final String NEW_MEMBER_ASSIGNMENTS_FINAL_REMINDER = "NEW_MEMBER_ASSIGNMENTS_FINAL_REMINDER";
+	public static final String AUTO = "AUTO_GENERATED";	
 	
 	
 
@@ -349,9 +346,7 @@ public class AppConstants {
 		
 		REST_EMAIL_SCHEDULER_GET_ALL_NOTIFICATION_ERROR("SH-001", "Unknown error while  sucheduler  all notification"),
 		
-		REST_USER_SERVICE_LOGIN_SESSION_STATUS_ERROR_2("S-164","user does not exit"), 
-	
-		;
+		REST_USER_SERVICE_LOGIN_SESSION_STATUS_ERROR_2("S-164","user does not exit");
 
 
 		public String code;
@@ -363,10 +358,5 @@ public class AppConstants {
 		}
 
 	}
-
-
-
-
-
 
 }

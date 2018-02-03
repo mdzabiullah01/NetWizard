@@ -53,7 +53,7 @@ public class DashBoardController {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ModelAndView modelAndView = null;
 		try{
-			if(!"anonymousUser".equals(principal)){
+			if(!RequestConstans.Anonymous.ANONYMOUS_USER.equals(principal)){
 				appUser = (User)principal;
 				modelAndView=new ModelAndView(RequestConstans.PAGE.DASHBOARD);
 				users = userService.loadUserByUserEmail(appUser.getUsername());

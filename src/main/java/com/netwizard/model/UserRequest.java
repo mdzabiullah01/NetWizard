@@ -6,12 +6,15 @@ package com.netwizard.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.springframework.web.multipart.MultipartFile;
 
 /**
  * @author Rayulu Vemula
  *
  */
+@XmlRootElement
 public class UserRequest implements Serializable{
 
 	/**

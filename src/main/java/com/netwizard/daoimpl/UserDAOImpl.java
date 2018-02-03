@@ -3,8 +3,6 @@
  */
 package com.netwizard.daoimpl;
 
-	
-
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -24,9 +22,9 @@ import com.netwizard.util.RequestConstans;
 @Component
 @Repository("userDAO")
 public class UserDAOImpl implements UserDAO {
-	
+
 	private static Logger logger = Logger.getLogger(UserDAOImpl.class);
-	
+
 	@Autowired
 	private MongoTemplate mongoTemplate;
 
@@ -38,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 	public Users loadUserByUserEmail(String username) {
 		logger.debug(">> loadUserByUserEmail" + username);
 		Users user = null;
-		Query query =null;
+		Query query = null;
 		try {
 			query = new Query(Criteria.where("email").is(username.toLowerCase()));
 			user = this.mongoTemplate.findOne(query, Users.class, RequestConstans.Collections.COLLECTION_USERS);
@@ -46,7 +44,7 @@ public class UserDAOImpl implements UserDAO {
 			logger.error("Error in loadUserByUserEmail.." + e);
 			e.printStackTrace();
 		}
-		logger.debug("<< loadUserByUserEmail  user="+user);
+		logger.debug("<< loadUserByUserEmail  user=" + user);
 		return user;
 	}
 
@@ -59,13 +57,13 @@ public class UserDAOImpl implements UserDAO {
 		logger.debug(">> saveorUpdateUserInfo" + usersInfo);
 		Users user = null;
 		try {
-			  this.mongoTemplate.save(usersInfo, RequestConstans.Collections.COLLECTION_USERS);;
-		} catch (Exception e) { /* for any other errors */
+			this.mongoTemplate.save(usersInfo, RequestConstans.Collections.COLLECTION_USERS);
+		} catch (Exception e) {
 			logger.error("Error in saveorUpdateUserInfo.." + e);
 			e.printStackTrace();
 		}
-		logger.debug("<< saveorUpdateUserInfo  user="+usersInfo);
+		logger.debug("<< saveorUpdateUserInfo  user=" + usersInfo);
 		return user;
 	}
-	
+
 }

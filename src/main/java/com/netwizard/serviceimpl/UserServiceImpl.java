@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
 		Users users = null;
 		try {
 			users = userDAO.loadUserByUserEmail(username);
-		} catch (Exception e) { /* for any other errors */
+		} catch (Exception e) {
 			logger.error("Error in loadUserByUserEmail.." + e);
 			e.printStackTrace();
 		}

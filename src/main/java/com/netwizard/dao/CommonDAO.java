@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
+import com.netwizard.model.AssignGroup;
 import com.netwizard.model.Users;
 
 /**
@@ -14,5 +15,7 @@ import com.netwizard.model.Users;
 public interface CommonDAO {
 
 	public List<Users> getAllUsers();
+
+	public List<AssignGroup> getAllGroups();
 
 }
