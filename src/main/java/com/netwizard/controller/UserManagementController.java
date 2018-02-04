@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
@@ -20,11 +21,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.netwizard.model.AssignGroup;
+import com.netwizard.model.Department;
 import com.netwizard.model.UserRequest;
 import com.netwizard.model.Users;
 import com.netwizard.response.ServiceControllerUtils;
 import com.netwizard.service.CommonService;
+import com.netwizard.service.PreferenceService;
 import com.netwizard.service.UserService;
 import com.netwizard.util.RequestConstans;
 
@@ -46,6 +48,9 @@ public class UserManagementController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	private PreferenceService preferenceService;
+
 	/**
 	 * @ USER MANAGEMENT
 	 * 
@@ -64,6 +69,11 @@ public class UserManagementController {
 			if (!RequestConstans.Anonymous.ANONYMOUS_USER.equals(principal)) {
 				modelAndView = new ModelAndView(RequestConstans.PAGE.USERMANAGEMENT);
 				userList = commonService.getAllUsers();
+				User appUser = (User) principal;
+				Users users = userService.loadUserByUserEmail(appUser.getUsername());
+				if (users != null) {
+					modelAndView.addObject("users", users);
+				}
 				if (userList != null) {
 					modelAndView.addObject("userList", userList);
 					modelAndView.addObject("usermanagementactive", "usermanagementsurveyactive");
@@ -98,8 +108,13 @@ public class UserManagementController {
 		try {
 			if (!RequestConstans.Anonymous.ANONYMOUS_USER.equals(principal)) {
 				modelAndView = new ModelAndView(RequestConstans.PAGE.USERMANAGEMENT);
-				userService.saveorUpdateUserInfo(dto);
+				userService.saveorUpdateUserInfo(dto, userRequest.getDepartmentId());
 				List<Users> userList = commonService.getAllUsers();
+				User appUser = (User) principal;
+				Users users = userService.loadUserByUserEmail(appUser.getUsername());
+				if (users != null) {
+					modelAndView.addObject("users", users);
+				}
 				if (userList != null) {
 					modelAndView.addObject("userList", userList);
 					modelAndView.addObject("usermanagementactive", "usermanagementsurveyactive");
@@ -112,9 +127,9 @@ public class UserManagementController {
 		return modelAndView;
 	}
 
-	@ModelAttribute("allGroups")
-	public List<AssignGroup> populateDepartments() {
-		List<AssignGroup> contryList = commonService.getAllGroups();
-		return contryList;
+	@ModelAttribute("allDepartments")
+	public List<Department> populateDepartments() {
+		List<Department> departmentList = preferenceService.getAllDepartments();
+		return departmentList;
 	}
 }

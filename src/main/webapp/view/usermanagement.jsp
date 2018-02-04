@@ -1,6 +1,6 @@
 <%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html>
 <head>
@@ -12,11 +12,7 @@
 	content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
-	
-	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
-
-
 </script>
 
 <!-- bootstrap-css -->
@@ -76,7 +72,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<h1>User Management</h1>
 					</div>
 
-					< <div class="col-md-6">
+					<div class="col-md-6">
 						<ul>
 							<li><span class="calendarIcon"></span> <span>11
 									December 2017</span></li>
@@ -89,7 +85,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 				<div class="clearfix"></div>
-				<div class="agileits-stats">
+				<%-- <div class="agileits-stats">
 
 					<div class="col-md-12 stats-info stats-last widget-shadow">
 						<div class="stats-last-agile">
@@ -118,6 +114,64 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 					</div>
 					<div class="clearfix"></div>
+				</div> --%>
+
+				<div class="agileits-stats">
+
+					<div class="col-md-12 stats-info stats-last widget-shadow">
+						<div class="row">
+							<div class="col-md-12">
+								<h5>Employee Registration</h5>
+							</div>
+							<div class="col-md-12 text-right">
+								<h6>
+									For Bulk Registration, please <span class="linkText">click
+										here</span>
+								</h6>
+							</div>
+						</div>
+
+						<div class="stats-last-agile">
+
+							<table id="employeesTable"
+								class="tableResponsiveData table stats-table responsive display nowrap tableResponsive">
+
+								<thead>
+									<tr>
+										<th>S.No.</th>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Date Of Birth</th>
+										<th>Date Of Joining</th>
+										<th>Group</th>
+										<th>Department</th>
+										<th>Picture</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${userList}" var="usr" varStatus="usersVar">
+										<tr>
+											<th scope="row">${usersVar.count}</th>
+											<th>${usr.firstName}</th>
+											<td>${usr.lastName}</td>
+											<td><fmt:formatDate value="${usr.dateofbirth}"
+													pattern="dd-MM-yyyy" /></td>
+											<td><fmt:formatDate value="${usr.dateOfJoinging}"
+												pattern="dd-MM-yyyy" />
+											</td>
+											<td>${usr.department.assignGroup.groupName}</td>
+											<td>${usr.department.departmentName}</td>
+											<td><span class="linkText">Upload</span></td>
+											<td class="text-center"><span class="saveIcon"></span> <span
+												class="editIcon"></span></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="clearfix"></div>
 				</div>
 
 				<div class="agileits-stats">
@@ -137,23 +191,22 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 					<div class="row topForm row-no-margin">
 
 						<form:form class="formStyle1" modelAttribute="userRequest"
-							action="saveUserInfo" method="post">
-							                        <%-- <form class="formStyle1" action="saveUserInfo" method="post" enctype="multipart/form-data"> --%>
-							
+							action="saveUserInfo" method="post" id="empRegister">
+
+							<%-- <form class="formStyle1" action="saveUserInfo" method="post" enctype="multipart/form-data"> --%>
+
 							<div class="row row-no-margin">
 								<div class="col-md-4 col-no-padding">
 									<form:label path="firstName">First Name</form:label>
-									<!-- <input type="text" name="FnRAY"> -->
 									<form:input path="firstName" type="text" />
+									<%-- <form:errors path="firstName"/> --%>
 								</div>
 								<div class="col-md-4">
 									<form:label path="lastName">Last Name</form:label>
-									<!-- <input type="text" name="LnVEM"> -->
 									<form:input path="lastName" type="text" />
 								</div>
 								<div class="col-md-4">
 									<form:label path="dateofbirth">Date of Birth</form:label>
-									<!-- <input type="date" name="DoCHE"> -->
 									<%-- <form:input path="dateofbirth" type="date" /> --%>
 									<form:input path="dateofbirth" cssClass="date-picker" />
 
@@ -162,7 +215,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<div class="row row-no-margin">
 								<div class="col-md-4 col-no-padding">
 									<form:label path="nationality">Nationality</form:label>
-									<!-- <input type="text" name="Natino"> -->
 
 									<form:select path="nationality">
 										<form:option value="">--- Select Nationality ---</form:option>
@@ -174,33 +226,26 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								</div>
 								<div class="col-md-4">
 									<form:label path="dateofjoing">Date of Joining</form:label>
-									<!-- <input type="date" name="DoFJoN"> -->
 									<form:input path="dateofjoing" type="date" />
 								</div>
 								<div class="col-md-4">
 									<form:label path="multipartFile">Picture</form:label>
-									<!-- <input type="file" name="prOPIC"> -->
 									<form:input path="multipartFile" type="file" />
 								</div>
 							</div>
 							<div class="row row-no-margin">
 								<div class="col-md-4 col-no-padding">
-									<form:label path="assignGroup">Assignee it to Group</form:label>
-									<!-- <input type="text" name="assignGroup"> -->
+									<form:label path="departmentId">Department</form:label>
 
-									<form:select path="assignGroup">
+									<form:select path="departmentId">
 										<form:option value="" label="--- Select Group ---" />
-										<form:options items="${allGroups}" itemValue="groupName"
-											itemLabel="groupName" />
+										<c:forEach items="${allDepartments}" var="dept">
+											<form:option value="${dept._id}"
+												label="${dept.departmentName} - ${dept.assignGroup.groupName}" />
+										</c:forEach>
 									</form:select>
-
-
 								</div>
 								<div class="col-md-2 col-no-padding pull-right">
-									<!-- <button type="button" class="blueBtn">Save</button>
-                           <button type="button" class="grayBtn">Cancel</button>  -->
-									<!-- <input type="submit" class="blueBtn" value="Save">    
-                            <input type="reset" class="blueBtn" value="Cancel">  -->
 									<form:button type="submit" class="blueBtn">Save</form:button>
 									<form:button type="reset" class="blueBtn">Cancel</form:button>
 								</div>
@@ -250,8 +295,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 		});
 	</script>
-
-
 
 </body>
 </html>

@@ -3,7 +3,6 @@
  */
 package com.netwizard.service;
 
-
 import org.springframework.stereotype.Service;
 
 import com.netwizard.model.Users;
@@ -22,11 +21,6 @@ public interface UserService {
 	 */
 	Users loadUserByUserEmail(String username);
 
-	/**
-	 * 
-	 * @param usersInfo
-	 * @return
-	 */
-	Users saveorUpdateUserInfo(Users usersInfo); 
-	
+	Users saveorUpdateUserInfo(Users usersInfo, String deptId);
+
 }

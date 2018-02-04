@@ -14,8 +14,8 @@ import com.netwizard.util.RequestConstans;
  * @author Gautam Joshi
  *
  */
-@Document(collection = RequestConstans.Collections.COLLECTION_GROUP)
-public class AssignGroup implements Serializable {
+@Document(collection = RequestConstans.Collections.COLLECTION_DEPARTMENT)
+public class Department implements Serializable {
 
 	/**
 	 *
@@ -23,16 +23,9 @@ public class AssignGroup implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String _id;
-	private String groupName;
+	private String departmentName;
 	private Date createdDate;
-
-	public String getGroupName() {
-		return groupName;
-	}
-
-	public void setGroupName(String groupName) {
-		this.groupName = groupName;
-	}
+	private AssignGroup assignGroup;
 
 	public String get_id() {
 		return _id;
@@ -48,5 +41,21 @@ public class AssignGroup implements Serializable {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	public AssignGroup getAssignGroup() {
+		return assignGroup;
+	}
+
+	public void setAssignGroup(AssignGroup assignGroup) {
+		this.assignGroup = assignGroup;
+	}
+
+	public String getDepartmentName() {
+		return departmentName;
+	}
+
+	public void setDepartmentName(String departmentName) {
+		this.departmentName = departmentName;
 	}
 }

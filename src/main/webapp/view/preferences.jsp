@@ -1,3 +1,7 @@
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <head>
 <title>Net Wizards Admin Panel Category Bootstrap Responsive
@@ -8,7 +12,9 @@
 	content="Visitors Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
 </script>
 <!-- bootstrap-css -->
 <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -86,20 +92,27 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						</div>
 
 						<div class="row topForm row-no-margin">
-							<form>
+							<form:form class="formStyle1" modelAttribute="departmentRequest"
+								action="saveDepartmentInfo" method="post">
 								<div class="col-md-4">
-									<label>Type</label> <select class="custom-dropdown">
-										<option></option>
-									</select>
+									<form:label path="assignGroupId">Type</form:label>
+
+									<form:select path="assignGroupId" class="custom-dropdown">
+										<form:option value="" label="--- Select Group ---" />
+										<form:options items="${allGroups}" itemValue="_id"
+											itemLabel="groupName" />
+
+									</form:select>
 								</div>
 								<div class="col-md-4">
-									<label>Name</label> <input type="text" name="">
+									<form:label path="departmentName">Name</form:label>
+									<form:input path="departmentName" type="text" />
 								</div>
 								<div class="col-md-4">
-									<button type="button" class="blueBtn">Create</button>
-									<button type="button" class="grayBtn">Cancel</button>
+									<button type="submit" class="blueBtn">Create</button>
+									<button type="reset" class="grayBtn">Cancel</button>
 								</div>
-							</form>
+							</form:form>
 						</div>
 
 						<div class="stats-last-agile">
@@ -115,55 +128,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<th scope="row">1</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-									<tr>
-										<th>2</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-									<tr>
-										<th>3</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-									<tr>
-										<th>4</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-
-									<tr>
-										<th>5</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-									<tr>
-										<th>6</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-									<tr>
-										<th>7</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
-									<tr>
-										<th>8</th>
-										<td>11/12/2017</td>
-										<td>Group</td>
-										<td>Indian Nationality</td>
-									</tr>
+									<c:forEach items="${departmentList}" var="dept"
+										varStatus="deptVar">
+										<tr>
+											<th scope="row">${deptVar.count}</th>
+											<%-- <th>${dept.createdDate}</th> --%>
+											<td><fmt:formatDate value="${dept.createdDate}"
+													pattern="dd-MM-yyyy" /></td>
+											<td>${dept.assignGroup.groupName}</td>
+											<td>${dept.departmentName}</td>
+										</tr>
+									</c:forEach>
 
 								</tbody>
 							</table>

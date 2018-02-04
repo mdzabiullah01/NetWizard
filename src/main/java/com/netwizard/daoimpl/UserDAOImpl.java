@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.netwizard.dao.UserDAO;
+import com.netwizard.model.Department;
 import com.netwizard.model.Users;
 import com.netwizard.util.RequestConstans;
 
@@ -64,6 +65,23 @@ public class UserDAOImpl implements UserDAO {
 		}
 		logger.debug("<< saveorUpdateUserInfo  user=" + usersInfo);
 		return user;
+	}
+
+	@Override
+	public Department getDeptById(String id) {
+		logger.debug(">> getDeptById" + id);
+		Department dept;
+		try {
+			Query query = new Query(Criteria.where("_id").is(id));
+			dept = this.mongoTemplate.findOne(query, Department.class,
+					RequestConstans.Collections.COLLECTION_DEPARTMENT);
+		} catch (Exception e) {
+			logger.error("Error in getDeptById.." + e);
+			e.printStackTrace();
+			dept = null;
+		}
+		logger.debug("<< getDeptById  Department=" + dept);
+		return dept;
 	}
 
 }

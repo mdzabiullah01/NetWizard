@@ -35,12 +35,11 @@ public class Users implements Serializable {
 	private Date password_forget_time;
 	private String defaultPassword;
 	private String profilepic;
-	private String department;
 	private String country;
 	private String nationality;
 	private Date dateofbirth;
 	private Date dateOfJoinging;
-	private String assignGroup;
+	private Department department;
 
 	public String get_id() {
 		return _id;
@@ -168,14 +167,6 @@ public class Users implements Serializable {
 		this.createdDate = createdDate;
 	}
 
-	public String getDepartment() {
-		return department;
-	}
-
-	public void setDepartment(String department) {
-		this.department = department;
-	}
-
 	public String getCountry() {
 		return country;
 	}
@@ -208,12 +199,12 @@ public class Users implements Serializable {
 		this.dateOfJoinging = dateOfJoinging;
 	}
 
-	public String getAssignGroup() {
-		return assignGroup;
+	public Department getDepartment() {
+		return department;
 	}
 
-	public void setAssignGroup(String assignGroup) {
-		this.assignGroup = assignGroup;
+	public void setDepartment(Department department) {
+		this.department = department;
 	}
 
 }

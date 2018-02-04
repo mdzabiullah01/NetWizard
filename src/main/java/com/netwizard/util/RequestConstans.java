@@ -51,7 +51,8 @@ public class RequestConstans {
 	}
 
 	public interface Collections {
-		public static final String COLLECTION_GROUP = "group";
+		public static final String COLLECTION_GROUP = "assignGroup";
+		public static final String COLLECTION_DEPARTMENT = "department";
 		public static final String COLLECTION_USERS = "users";
 		public static final String COLLECTION_CARE_LOG_BEAN = "careLogBean";
 		public static final String COLLECTION_CARE_GIVER = "careGiver";
