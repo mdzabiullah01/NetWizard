@@ -7,8 +7,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Component;
 
-import com.netwizard.model.AssignGroup;
-import com.netwizard.model.Department;
+import com.netwizard.model.Category;
 
 /**
  * @author Rayulu Vemula
@@ -17,19 +16,7 @@ import com.netwizard.model.Department;
 @Component
 public interface PreferenceDAO {
 
-	/**
-	 * 
-	 * @param Department
-	 * @return
-	 */
-	Department saveOrUpdateDept(Department dept);
+	Category saveOrUpdateCategory(Category cat);
 
-	/**
-	 * Get all the departments.
-	 * 
-	 * @return
-	 */
-	List<Department> getAllDepartments();
-
-	AssignGroup getAssignGroup(String id);
+	List<Category> getAllCategories();
 }

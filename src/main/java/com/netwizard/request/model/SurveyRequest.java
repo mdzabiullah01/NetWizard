@@ -1,21 +1,22 @@
 /**
  * 
  */
-package com.netwizard.model;
+package com.netwizard.request.model;
 
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import javax.xml.bind.annotation.XmlRootElement;
+
+import com.netwizard.model.Question;
 
 /**
  * @author Rayulu Vemula
  *
  */
-@Document(collection = "survey")
-public class Survey implements Serializable {
+@XmlRootElement
+public class SurveyRequest implements Serializable {
 
 	/**
 	 * 
@@ -23,21 +24,16 @@ public class Survey implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String _id;
-	// private String surveyType; // (Category)
-	@DBRef
-	private Category category;
+	private String categoryId;
 	private String surveyName;
 	private Date startDate;
 	private Date endDate;
 	private Date scheduleDate;
-	@DBRef
 	private List<Question> questions;
 	private Date issueDate;
 	private Date presentingDate;
 	private Date presentingTime;
 	private String status;
-	
-	private Date createdDate;
 
 	/**
 	 * @return the _id
@@ -189,20 +185,12 @@ public class Survey implements Serializable {
 		this.status = status;
 	}
 
-	public Category getCategory() {
-		return category;
+	public String getCategoryId() {
+		return categoryId;
 	}
 
-	public void setCategory(Category category) {
-		this.category = category;
-	}
-
-	public Date getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(Date createdDate) {
-		this.createdDate = createdDate;
+	public void setCategoryId(String categoryId) {
+		this.categoryId = categoryId;
 	}
 
 }

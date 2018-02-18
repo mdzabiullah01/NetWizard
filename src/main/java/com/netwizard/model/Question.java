@@ -9,54 +9,46 @@ import java.io.Serializable;
  * @author Rayulu Vemula
  *
  */
-public class Question implements Serializable{
+public class Question implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String _id;
-	private String questionName;
-	private String questionSubject;
-	
+	private String question;
+	private Integer responseMethod;
+
 	/**
 	 * @return the _id
 	 */
 	public String get_id() {
 		return _id;
 	}
+
 	/**
-	 * @param _id the _id to set
+	 * @param _id
+	 *            the _id to set
 	 */
 	public void set_id(String _id) {
 		this._id = _id;
 	}
-	/**
-	 * @return the questionName
-	 */
-	public String getQuestionName() {
-		return questionName;
+
+	public Integer getResponseMethod() {
+		return responseMethod;
 	}
-	/**
-	 * @param questionName the questionName to set
-	 */
-	public void setQuestionName(String questionName) {
-		this.questionName = questionName;
+
+	public void setResponseMethod(Integer responseMethod) {
+		this.responseMethod = responseMethod;
 	}
-	/**
-	 * @return the questionSubject
-	 */
-	public String getQuestionSubject() {
-		return questionSubject;
+
+	public String getQuestion() {
+		return question;
 	}
-	/**
-	 * @param questionSubject the questionSubject to set
-	 */
-	public void setQuestionSubject(String questionSubject) {
-		this.questionSubject = questionSubject;
+
+	public void setQuestion(String question) {
+		this.question = question;
 	}
-	
-	
 
 }

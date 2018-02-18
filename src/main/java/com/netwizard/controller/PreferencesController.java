@@ -9,7 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
@@ -21,12 +20,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.netwizard.model.AssignGroup;
-import com.netwizard.model.Department;
-import com.netwizard.model.DepartmentRequest;
+import com.netwizard.model.Category;
 import com.netwizard.model.Users;
+import com.netwizard.request.model.CategoryRequest;
 import com.netwizard.response.ServiceControllerUtils;
-import com.netwizard.service.CommonService;
 import com.netwizard.service.PreferenceService;
 import com.netwizard.service.UserService;
 import com.netwizard.util.RequestConstans;
@@ -39,9 +36,6 @@ import com.netwizard.util.RequestConstans;
 public class PreferencesController {
 
 	private static Logger logger = Logger.getLogger(ReportController.class);
-
-	@Autowired
-	private CommonService commonService;
 
 	@Autowired
 	private ServiceControllerUtils scutils;
@@ -61,7 +55,7 @@ public class PreferencesController {
 	 */
 	@RequestMapping(value = "/preferences", method = RequestMethod.GET)
 	public ModelAndView preferencesHome(HttpServletRequest request, HttpServletResponse response,
-			@ModelAttribute("departmentRequest") DepartmentRequest departmentRequest) {
+			@ModelAttribute("categoryRequest") CategoryRequest categoryRequest) {
 		logger.info("Method to load all home pages dashboards---:");
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ModelAndView modelAndView = null;
@@ -69,7 +63,7 @@ public class PreferencesController {
 			if (!RequestConstans.Anonymous.ANONYMOUS_USER.equals(principal)) {
 				modelAndView = new ModelAndView(RequestConstans.PAGE.PREFERENCES);
 				addUser(modelAndView, principal);
-				addDeptList(modelAndView);
+				addCategoryList(modelAndView);
 				modelAndView.addObject("preferencesactive", "preferencesactive");
 			}
 		} catch (Exception exception) {
@@ -86,23 +80,20 @@ public class PreferencesController {
 	 * @return
 	 * @return
 	 */
-	@RequestMapping(value = "/saveDepartmentInfo", method = RequestMethod.POST)
-	public ModelAndView saveDepartmentInfo(@ModelAttribute("departmentRequest") DepartmentRequest departmentRequest,
+	@RequestMapping(value = "/saveCategory", method = RequestMethod.POST)
+	public ModelAndView saveCategory(@ModelAttribute("categoryRequest") CategoryRequest categoryRequest,
 			BindingResult result, ModelMap model) {
 
-		logger.info("Method to saave saveDepartmentInfo---:");
-
-		ModelMapper modelMapper = new ModelMapper();
-		Department dept = modelMapper.map(departmentRequest, Department.class);
+		logger.info("Method to saave saveCategory---:");
 
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ModelAndView modelAndView = null;
 		try {
 			if (!RequestConstans.Anonymous.ANONYMOUS_USER.equals(principal)) {
 				modelAndView = new ModelAndView(RequestConstans.PAGE.PREFERENCES);
-				preferenceService.saveOrUpdateDept(dept, departmentRequest.getAssignGroupId());
+				preferenceService.saveOrUpdateCategory(categoryRequest.getCategoryName());
 				addUser(modelAndView, principal);
-				addDeptList(modelAndView);
+				addCategoryList(modelAndView);
 				modelAndView.addObject("preferencesactive", "preferencesactive");
 			}
 		} catch (Exception exception) {
@@ -119,22 +110,17 @@ public class PreferencesController {
 		}
 	}
 
-	private void addDeptList(ModelAndView modelAndView) {
-		List<Department> departmentList = preferenceService.getAllDepartments();
-		if (departmentList != null) {
-			modelAndView.addObject("departmentList", departmentList);
+	private void addCategoryList(ModelAndView modelAndView) {
+		List<Category> categoryList = preferenceService.getAllCategories();
+		if (categoryList != null) {
+			modelAndView.addObject("categoryList", categoryList);
 		}
 	}
 
-	@ModelAttribute("allDepartments")
-	public List<Department> populateDepartments() {
-		List<Department> departmentList = preferenceService.getAllDepartments();
-		return departmentList;
+	@ModelAttribute("allCategories")
+	public List<Category> getAllCategories() {
+		List<Category> categoryList = preferenceService.getAllCategories();
+		return categoryList;
 	}
 
-	@ModelAttribute("allGroups")
-	public List<AssignGroup> populateGroups() {
-		List<AssignGroup> gourpList = commonService.getAllGroups();
-		return gourpList;
-	}
 }

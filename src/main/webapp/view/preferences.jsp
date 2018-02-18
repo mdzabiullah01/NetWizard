@@ -13,7 +13,11 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyEricsson, Motorola web design" />
 <script type="application/x-javascript">
 	
+	
+	
 	 addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } 
+
+
 
 </script>
 <!-- bootstrap-css -->
@@ -91,7 +95,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</div>
 						</div>
 
-						<div class="row topForm row-no-margin">
+						<%-- <div class="row topForm row-no-margin">
 							<form:form class="formStyle1" modelAttribute="departmentRequest"
 								action="saveDepartmentInfo" method="post">
 								<div class="col-md-4">
@@ -113,6 +117,20 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<button type="reset" class="grayBtn">Cancel</button>
 								</div>
 							</form:form>
+						</div> --%>
+
+						<div class="row topForm row-no-margin">
+							<form:form class="formStyle1" modelAttribute="categoryRequest"
+								action="saveCategory" method="post">
+								<div class="col-md-4">
+									<form:label path="categoryName">Category Name</form:label>
+									<form:input path="categoryName" type="text" required="required" />
+								</div>
+								<div class="col-md-4">
+									<button type="submit" class="blueBtn">Create</button>
+									<button type="reset" class="grayBtn">Cancel</button>
+								</div>
+							</form:form>
 						</div>
 
 						<div class="stats-last-agile">
@@ -123,20 +141,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									<tr>
 										<th>S.No.</th>
 										<th>Date</th>
-										<th>Type</th>
-										<th>Name</th>
+										<th>Category Name</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${departmentList}" var="dept"
-										varStatus="deptVar">
+									<c:forEach items="${categoryList}" var="cat"
+										varStatus="catVar">
 										<tr>
-											<th scope="row">${deptVar.count}</th>
+											<th scope="row">${catVar.count}</th>
 											<%-- <th>${dept.createdDate}</th> --%>
-											<td><fmt:formatDate value="${dept.createdDate}"
+											<td><fmt:formatDate value="${cat.createdDate}"
 													pattern="dd-MM-yyyy" /></td>
-											<td>${dept.assignGroup.groupName}</td>
-											<td>${dept.departmentName}</td>
+											<td>${cat.categoryName}</td>
 										</tr>
 									</c:forEach>
 

@@ -8,14 +8,11 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.netwizard.dao.PreferenceDAO;
-import com.netwizard.model.AssignGroup;
-import com.netwizard.model.Department;
+import com.netwizard.model.Category;
 import com.netwizard.util.RequestConstans;
 
 /**
@@ -32,48 +29,32 @@ public class PreferenceDAOImpl implements PreferenceDAO {
 	private MongoTemplate mongoTemplate;
 
 	@Override
-	public Department saveOrUpdateDept(Department dept) {
-		logger.debug(">> saveOrUpdateDept" + dept);
+	public Category saveOrUpdateCategory(Category cat) {
+		logger.debug(">> saveOrUpdateCategory" + cat);
 		try {
-			this.mongoTemplate.save(dept, RequestConstans.Collections.COLLECTION_DEPARTMENT);
+			this.mongoTemplate.save(cat, RequestConstans.Collections.COLLECTION_CATEGORY);
 		} catch (Exception e) {
-			logger.error("Error in saveOrUpdateDept.." + e);
+			logger.error("Error in saveOrUpdateCategory.." + e);
 			e.printStackTrace();
 		}
-		logger.debug("<< saveOrUpdateDept  dept=" + dept);
-		return dept;
+		logger.debug("<< saveOrUpdateCategory  dept=" + cat);
+		return cat;
 	}
 
-	@Override
-	public AssignGroup getAssignGroup(String id) {
-		logger.debug(">> getAssignGroup" + id);
-		AssignGroup assignGroup = null;
-		Query query = null;
-		try {
-			query = new Query(Criteria.where("_id").is(id));
-			assignGroup = this.mongoTemplate.findOne(query, AssignGroup.class,
-					RequestConstans.Collections.COLLECTION_GROUP);
-		} catch (Exception e) { /* for any other errors */
-			logger.error("Error in getAssignGroup.." + e);
-			e.printStackTrace();
-		}
-		logger.debug("<< getAssignGroup  AssignGroup=" + assignGroup);
-		return assignGroup;
-	}
 
 	@Override
-	public List<Department> getAllDepartments() {
-		logger.debug(">> getAllDepartments");
-		List<Department> deptList;
+	public List<Category> getAllCategories() {
+		logger.debug(">> getAllCategories");
+		List<Category> catList;
 		try {
-			deptList = this.mongoTemplate.findAll(Department.class, RequestConstans.Collections.COLLECTION_DEPARTMENT);
+			catList = this.mongoTemplate.findAll(Category.class, RequestConstans.Collections.COLLECTION_CATEGORY);
 		} catch (Exception e) {
-			logger.error("Error in getAllDepartments.." + e);
+			logger.error("Error in getAllCategories.." + e);
 			e.printStackTrace();
-			deptList = null;
+			catList = null;
 		}
-		logger.debug("<< getAllDepartments  dept List=" + deptList);
-		return deptList;
+		logger.debug("<< getAllCategories  dept List=" + catList);
+		return catList;
 	}
 
 }

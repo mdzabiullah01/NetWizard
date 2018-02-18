@@ -3,7 +3,6 @@
  */
 package com.netwizard.serviceimpl;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.log4j.Logger;
@@ -11,8 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.netwizard.dao.PreferenceDAO;
-import com.netwizard.model.Department;
+import com.netwizard.model.Category;
 import com.netwizard.service.PreferenceService;
+import com.netwizard.util.DateUtil;
 
 /**
  * @author Gautam Joshi
@@ -27,33 +27,36 @@ public class PreferenceServiceImpl implements PreferenceService {
 	private PreferenceDAO preferenceDAO;
 
 	@Override
-	public Department saveOrUpdateDept(Department dept, String assignGroupId) {
-		logger.debug(">> saveOrUpdateDept" + dept);
+	public Category saveOrUpdateCategory(String categoryName) {
+		logger.debug(">> saveOrUpdateCategory" + categoryName);
+
+		Category cat = new Category();
+		cat.setCategoryName(categoryName);
+		cat.setCreatedDate(DateUtil.getGMTDate());
+
 		try {
-			dept.setAssignGroup(preferenceDAO.getAssignGroup(assignGroupId));
-			dept.setCreatedDate(new Date());
-			dept = preferenceDAO.saveOrUpdateDept(dept);
+			cat = preferenceDAO.saveOrUpdateCategory(cat);
 		} catch (Exception e) {
-			logger.error("Error in saveorUpdateUserInfo.." + e);
+			logger.error("Error in saveOrUpdateCategory.." + e);
 			e.printStackTrace();
 		}
-		logger.debug("<< saveOrUpdateDept  dept=" + dept);
-		return dept;
+		logger.debug("<< saveOrUpdateCategory  dept=" + cat);
+		return cat;
 	}
 
 	@Override
-	public List<Department> getAllDepartments() {
-		logger.debug(">> getAllDepartments");
-		List<Department> deptList;
+	public List<Category> getAllCategories() {
+		logger.debug(">> getAllCategories");
+		List<Category> catList;
 		try {
-			deptList = preferenceDAO.getAllDepartments();
+			catList = preferenceDAO.getAllCategories();
 		} catch (Exception e) {
-			logger.error("Error in saveorUpdateUserInfo.." + e);
+			logger.error("Error in getAllCategories.." + e);
 			e.printStackTrace();
-			deptList = null;
+			catList = null;
 		}
-		logger.debug("<< getAllDepartments  deptList=" + deptList);
-		return deptList;
+		logger.debug("<< getAllCategories  catList=" + catList);
+		return catList;
 	}
 
 }

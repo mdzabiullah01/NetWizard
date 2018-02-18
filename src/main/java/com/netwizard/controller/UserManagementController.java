@@ -22,8 +22,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.netwizard.model.Department;
-import com.netwizard.model.UserRequest;
 import com.netwizard.model.Users;
+import com.netwizard.request.model.UserRequest;
 import com.netwizard.response.ServiceControllerUtils;
 import com.netwizard.service.CommonService;
 import com.netwizard.service.PreferenceService;
@@ -95,8 +95,8 @@ public class UserManagementController {
 	 * @return
 	 */
 	@RequestMapping(value = "/saveUserInfo", method = RequestMethod.POST)
-	public ModelAndView saveUserInfo(@ModelAttribute("userRequest") UserRequest userRequest, BindingResult result,
-			ModelMap model) {
+	public ModelAndView saveUserInfo(HttpServletRequest request, HttpServletResponse response,
+			@ModelAttribute("userRequest") UserRequest userRequest, BindingResult result, ModelMap model) {
 
 		logger.info("Method to load all home pages dashboards---:");
 
@@ -127,9 +127,9 @@ public class UserManagementController {
 		return modelAndView;
 	}
 
-	@ModelAttribute("allDepartments")
-	public List<Department> populateDepartments() {
-		List<Department> departmentList = preferenceService.getAllDepartments();
-		return departmentList;
-	}
+	// @ModelAttribute("allDepartments")
+	// public List<Department> populateDepartments() {
+	// List<Department> departmentList = preferenceService.getAllDepartments();
+	// return departmentList;
+	// }
 }
