@@ -208,7 +208,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-4">
 									<form:label path="dateofbirth">Date of Birth</form:label>
 									<%-- <form:input path="dateofbirth" type="date" /> --%>
-									<form:input path="dateofbirth" cssClass="date-picker" />
+									<form:input path="dateofbirth" type="date" />
 
 								</div>
 							</div>

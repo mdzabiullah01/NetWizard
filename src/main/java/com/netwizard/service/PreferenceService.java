@@ -10,14 +10,30 @@ import org.springframework.stereotype.Service;
 import com.netwizard.model.Category;
 
 /**
- * @author Gautam Joshi
+ * @author Rayulu Vemula
  *
  */
 @Service
 public interface PreferenceService {
 
+	/**
+	 * 
+	 * @param categoryName
+	 * @return
+	 */
 	Category saveOrUpdateCategory(String categoryName);
 
+	/**
+	 * 
+	 * @return
+	 */
 	List<Category> getAllCategories();
+
+	/**
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
+	Category findCategoryById(String categoryId);
 
 }

@@ -111,14 +111,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 								</div>
 								<div class="col-md-4">
-									<label>Survey Name</label> <input type="text" name="surveyName">
+								<form:label path="surveyName">Survey Name</form:label>
+								<form:input path="surveyName" type="text" required="required"/>
 								</div>
-								<div class="col-md-4 col-no-padding">
+								<!-- <div class="col-md-4 col-no-padding">
 									<label>Schedule</label>
 									<button type="button" class="grayBtn">Date</button>
 									<button type="button" class="grayBtn">Time</button>
 									<button type="button" class="blueBtn">Add Question</button>
-								</div>
+								</div> -->
 
 							</div>
 
@@ -126,9 +127,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<!-- Question :- <INPUT TYPE="text" name="question" />
 							<INPUT TYPE="radio" name="command" value="0" />Emoji <INPUT
 								TYPE="radio" name="command" value="1" />Yes/No<INPUT
-								TYPE="radio" NAME="command" VALUE="2" />Rating
+								TYPE="radio" NAME="command" VALUE="2" />Rating -->
 					
-							<input type="submit" value="Add Question"> -->
+							<!-- <input type="submit" value="Add Question"> -->
 
 							<div class="stats-last-agile surveyQuestContainer">
 
@@ -180,8 +181,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 									<div class="surveyFooter">
 										<div class="col-md-3 pull-right text-right">
-											<button type="button" class="blueBtn">Create Survey</button>
-											<button type="button" class="grayBtn">Cancel</button>
+											<!-- <button type="button" class="blueBtn">Create Survey</button>
+											<button type="button" class="grayBtn">Cancel</button> -->
+											<input type="submit" value="Create Survey"> <br><br>
+											
 										</div>
 
 									</div>
@@ -297,7 +300,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							<table class="table stats-table ">
 								<thead>
 									<tr>
-										<th>Issue Date</th>
+										<th>S.No.</th>
 										<th>Category</th>
 										<th>Survey Name</th>
 										<th>Respond Method</th>
@@ -308,28 +311,19 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 									</tr>
 								</thead>
 								<tbody>
+								<c:forEach items="${surveys}" var="survey"
+										varStatus="catVar"> 
 									<tr>
-										<th scope="row">11/12/2017</th>
-										<td>Environment</td>
-										<td>Working Environment from Jan to Feb 2017</td>
-										<td>Method #1</td>
-										<td>12/11/2017</td>
+										<th scope="row">${catVar.count}</th>
+										<td>${survey.category.categoryName}</td>
+										<td>${survey.surveyName}</td>
+										<td>${survey.responseMethod}</td>
+										<td>${survey.issueDate}</td>
 										<td>8am -4pm</td>
 										<td><span class="label label-success">Scheduled</span></td>
 										<td><a href="#" class="editRow">Edit</a></td>
 									</tr>
-									<tr>
-										<th scope="row">11/12/2017</th>
-										<td>Environment</td>
-										<td>Working Environment from Jan to Feb 2017</td>
-										<td>Method #1</td>
-										<td>12/11/2017</td>
-										<td>8am -4pm</td>
-										<td><span class="label label-success">Scheduled</span></td>
-										<td><a href="#" class="editRow">Edit</a></td>
-									</tr>
-
-
+										</c:forEach>
 								</tbody>
 							</table>
 						</div>

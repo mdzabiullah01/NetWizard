@@ -18,8 +18,17 @@ import com.netwizard.request.model.SurveyRequest;
 @Service
 public interface SurveyService {
 
-	Survey saveOrUpdateSurvey(SurveyRequest survey);
+	/**
+	 * 
+	 * @param survey
+	 * @return
+	 */
+	List<Survey> saveOrUpdateSurvey(Survey survey);
 
+	/**
+	 * 
+	 * @return
+	 */
 	List<Survey> getAllSurveys();
 
 }

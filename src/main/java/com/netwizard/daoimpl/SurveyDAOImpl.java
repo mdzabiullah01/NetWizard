@@ -16,7 +16,7 @@ import com.netwizard.model.Survey;
 import com.netwizard.util.RequestConstans;
 
 /**
- * @author Gautam Joshi
+ * @author Rayulu Vemula
  *
  */
 @Component
@@ -29,16 +29,18 @@ public class SurveyDAOImpl implements SurveyDAO {
 	private MongoTemplate mongoTemplate;
 
 	@Override
-	public Survey saveOrUpdateSurvey(Survey survey) {
+	public List<Survey> saveOrUpdateSurvey(Survey survey) {
 		logger.debug(">> saveOrUpdateSurvey" + survey);
+		List<Survey> surveyList = null;
 		try {
 			this.mongoTemplate.save(survey, RequestConstans.Collections.COLLECTION_SURVEY);
+			surveyList = this.mongoTemplate.findAll(Survey.class, RequestConstans.Collections.COLLECTION_SURVEY);
 		} catch (Exception e) {
 			logger.error("Error in saveOrUpdateSurvey.." + e);
 			e.printStackTrace();
 		}
-		logger.debug("<< saveOrUpdateSurvey  survey =" + survey);
-		return survey;
+		logger.debug("<< saveOrUpdateSurvey  surveyList =" + surveyList);
+		return surveyList;
 	}
 
 	@Override

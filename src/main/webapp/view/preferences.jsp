@@ -125,6 +125,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 								<div class="col-md-4">
 									<form:label path="categoryName">Category Name</form:label>
 									<form:input path="categoryName" type="text" required="required" />
+									
 								</div>
 								<div class="col-md-4">
 									<button type="submit" class="blueBtn">Create</button>

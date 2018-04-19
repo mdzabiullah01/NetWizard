@@ -10,13 +10,13 @@ import org.springframework.stereotype.Component;
 import com.netwizard.model.Survey;
 
 /**
- * @author Gautam Joshi
+ * @author Rayulu Vemula
  *
  */
 @Component
 public interface SurveyDAO {
 
-	Survey saveOrUpdateSurvey(Survey survey);
+	List<Survey> saveOrUpdateSurvey(Survey survey);
 
 	List<Survey> getAllSurveys();
 }

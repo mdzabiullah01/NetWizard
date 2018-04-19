@@ -15,7 +15,7 @@ import com.netwizard.service.PreferenceService;
 import com.netwizard.util.DateUtil;
 
 /**
- * @author Gautam Joshi
+ * @author Rayulu Vemula
  *
  */
 @Service
@@ -57,6 +57,20 @@ public class PreferenceServiceImpl implements PreferenceService {
 		}
 		logger.debug("<< getAllCategories  catList=" + catList);
 		return catList;
+	}
+
+	@Override
+	public Category findCategoryById(String categoryId) {
+		logger.debug(">> findCategoryById");
+		Category category = null;
+		try {
+			category = preferenceDAO.findCategoryById(categoryId);
+		} catch (Exception e) {
+			logger.error("Error in findCategoryById.." + e);
+			e.printStackTrace();
+		}
+		logger.debug("<< findCategoryById  category=" + category);
+		return category;
 	}
 
 }

@@ -16,7 +16,23 @@ import com.netwizard.model.Category;
 @Component
 public interface PreferenceDAO {
 
+	/**
+	 * 
+	 * @param cat
+	 * @return
+	 */
 	Category saveOrUpdateCategory(Category cat);
 
+	/**
+	 * 
+	 * @return
+	 */
 	List<Category> getAllCategories();
+
+	/**
+	 * 
+	 * @param categoryId
+	 * @return
+	 */
+	Category findCategoryById(String categoryId);
 }

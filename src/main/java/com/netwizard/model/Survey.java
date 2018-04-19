@@ -23,22 +23,20 @@ public class Survey implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String _id;
-	// private String surveyType; // (Category)
-	@DBRef
 	private Category category;
 	private String surveyName;
 	private Date startDate;
 	private Date endDate;
 	private Date scheduleDate;
-	@DBRef
 	private List<Question> questions;
+	private String responseMethod;
 	private Date issueDate;
 	private Date presentingDate;
 	private Date presentingTime;
 	private String status;
-	
 	private Date createdDate;
-
+    
+	
 	/**
 	 * @return the _id
 	 */
@@ -203,6 +201,20 @@ public class Survey implements Serializable {
 
 	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
+	}
+
+	/**
+	 * @return the responseMethod
+	 */
+	public String getResponseMethod() {
+		return responseMethod;
+	}
+
+	/**
+	 * @param responseMethod the responseMethod to set
+	 */
+	public void setResponseMethod(String responseMethod) {
+		this.responseMethod = responseMethod;
 	}
 
 }
