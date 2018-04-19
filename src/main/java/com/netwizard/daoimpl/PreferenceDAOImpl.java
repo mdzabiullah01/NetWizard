@@ -8,6 +8,8 @@ import java.util.List;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
@@ -16,7 +18,7 @@ import com.netwizard.model.Category;
 import com.netwizard.util.RequestConstans;
 
 /**
- * @author Gautam Joshi
+ * @author Rayulu Vemula
  *
  */
 @Component
@@ -55,6 +57,22 @@ public class PreferenceDAOImpl implements PreferenceDAO {
 		}
 		logger.debug("<< getAllCategories  dept List=" + catList);
 		return catList;
+	}
+
+
+	@Override
+	public Category findCategoryById(String categoryId) {
+		logger.debug(">> findCategoryById" + categoryId);
+		Category category = null;
+		try {
+			final Query userQuery = new Query(Criteria.where("_id").is(categoryId));
+			category =  this.mongoTemplate.findOne(userQuery, Category.class,RequestConstans.Collections.COLLECTION_CATEGORY);
+		} catch (Exception e) {
+			logger.error("Error in findCategoryById.." + e);
+			e.printStackTrace();
+		}
+		logger.debug("<< findCategoryById  category=" + category);
+		return category;
 	}
 
 }
